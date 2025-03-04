@@ -125,7 +125,7 @@ export function toCSV(questions: Question[]): string {
 export function makeAnswers(questions: Question[]): Answer[] {
     let answers: Answer[] = questions.map(
         (q: Question): Answer =>
-            true ?
+            q.id > 10 ?
                 {
                     questionId: q.id,
                     text: "",
