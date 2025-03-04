@@ -18,8 +18,16 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    let newArray: Question[] = questions.filter((q: Question) => q.body == "");
-    return newArray;
+    let yesBody: Question[] = questions.filter(
+        (q: Question) => q.body.length > 0,
+    );
+    let yesExpected: Question[] = yesBody.filter(
+        (q: Question) => q.expected.length > 0,
+    );
+    let yesOp: Question[] = yesExpected.filter(
+        (q: Question) => q.options.length > 0,
+    );
+    return yesOp;
 }
 // COMPLETE
 
@@ -105,7 +113,7 @@ export function toCSV(questions: Question[]): string {
     let qCSV = questions
         .map(
             (q: Question): string =>
-                `${q.id}, ${q.name}, ${q.options.length}, ${q.points}, ${q.published}`,
+                `${q.id},${q.name},${q.options.length},${q.points},${q.published}`,
         )
         .join("\n");
 
@@ -158,13 +166,11 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    let shortAns: Question[] = questions.filter(
-        (q: Question) => q.type == "short_answer_question",
+    let mapped: boolean = questions.every(
+        (q: Question): boolean => q.type === questions[0].type,
     );
-    if (shortAns.length == questions.length) {
-        return true;
-    }
-    return false;
+
+    return mapped;
 }
 // COMPLETE
 
@@ -250,33 +256,21 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    let newQs: Question[] = [];
-    if (targetOptionIndex == -1) {
-        newQs = questions.map(
-            (q: Question): Question =>
-                q.id == targetId ?
-                    { ...q, options: [...q.options, newOption] }
-                :   q,
-        );
-    } else {
-        // deep copy the question over and change the option array
-        let deepCopy: Question[] = questions.map(
-            (q: Question): Question => ({ ...q, options: [...q.options] }),
-        );
-        newQs = deepCopy.map(
-            (q: Question): Question =>
-                q.id == targetId ?
-                    {
-                        ...q,
-                        options: [
-                            ...q.options,
-                            (q.options[targetOptionIndex] = newOption),
-                        ],
-                    }
-                :   q,
-        );
-    }
-    return newQs;
+    let newArray: Question[] = questions.map((q: Question) =>
+        q.id !== targetId ?
+            q
+        :   {
+                ...q,
+                options:
+                    targetOptionIndex === -1 ?
+                        [...q.options, newOption]
+                    :   q.options.map((existing, option) =>
+                            option === targetOptionIndex ? newOption : existing,
+                        ),
+            },
+    );
+
+    return newArray;
 }
 // COMPLETE
 
@@ -304,9 +298,9 @@ export function duplicateQuestionInArray(
         (q: Question): Question => ({ ...q, options: [...q.options] }),
     );
 
-    let finalArray: Question[] = deepCopy.splice(qIndex + 1, 0, quest);
+    deepCopy.splice(qIndex + 1, 0, quest);
 
-    return finalArray;
+    return deepCopy;
 }
 
 // COMPLETE
