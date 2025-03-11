@@ -12,20 +12,53 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    // two states, one for each die
-    //
+    // two states, one for each die -- DONE
+    // can see left die value -- DONE
+    // can see right die value -- DONE
+    // two roll buttons -- DONE
+    // change the value when clicking roll -- DONE
+    // initial values are different -- DONE
+    // lose when snake eyes -- DONE
+    // otherwise always win -- DONE
 
     const [left, setRoll] = useState<number>(1);
     const [right, setRoll2] = useState<number>(2);
 
-    function roll() {}
-
     return (
         <div>
-            <Button onClick={d6}>Roll Left</Button>
-            <span data-testid="left-die">Left Value: {left}</span>
-            <Button>Roll Right</Button>
-            <span data-testid="right-die">Right Value: {right}</span>
+            <Button
+                onClick={() => {
+                    setRoll(d6);
+                }}
+            >
+                Roll Left
+            </Button>
+            <span>
+                Left Value: <span data-testid="left-die">{left}</span>
+            </span>
+
+            <Button
+                onClick={() => {
+                    setRoll2(d6);
+                }}
+            >
+                Roll Right
+            </Button>
+            <span>
+                Right Value: <span data-testid="right-die">{right}</span>
+            </span>
+            <div>
+                {left === 1 && left === right ? (
+                    <span>LOSE</span>
+                ) : (
+                    <span></span>
+                )}
+                {left !== 1 && left === right ? (
+                    <span>WIN</span>
+                ) : (
+                    <span></span>
+                )}
+            </div>
         </div>
     );
 }
