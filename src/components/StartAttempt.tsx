@@ -8,9 +8,9 @@ export function StartAttempt(): React.JSX.Element {
     // button Mulligan increase attempts by one -- DONE
     // when quiz true: Start Quiz and Mulligan are disabled -- DONE
     // when quiz false: Stop Quiz disabled -- DONE
-    // when attempts 0: Start Quiz disabled -- LAST THING TO DO
+    // when attempts 0: Start Quiz disabled -- DONE
 
-    const [attempts, setAttempts] = useState<number>(1);
+    const [attempts, setAttempts] = useState<number>(4);
     const [quiz, setQuiz] = useState<boolean>(false);
 
     return (
@@ -18,9 +18,11 @@ export function StartAttempt(): React.JSX.Element {
             <span>
                 <Button
                     onClick={() => {
-                        setAttempts(attempts - 1);
+                        setAttempts(attempts - 1),
+                            // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+                            setQuiz(true);
                     }}
-                    disabled={attempts === 0}
+                    disabled={attempts === 0 || quiz}
                 >
                     Start Quiz
                 </Button>
@@ -38,9 +40,7 @@ export function StartAttempt(): React.JSX.Element {
             <span>
                 <Button
                     onClick={() => {
-                        setAttempts(attempts + 1),
-                            // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-                            setQuiz(true);
+                        setAttempts(attempts + 1);
                     }}
                     disabled={quiz}
                 >
