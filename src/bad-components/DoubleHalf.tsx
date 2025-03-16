@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { dhValue, setDhValue } from "./DoubleHalfState";
+// import { dhValue, setDhValue } from "./DoubleHalfState";
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+export const [dhValue, setDhValue] = useState<number>(10);
 
 function Doubler(): React.JSX.Element {
     return (
