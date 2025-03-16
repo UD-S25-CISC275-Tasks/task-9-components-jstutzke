@@ -6,26 +6,18 @@ import { StartAttempt } from "./components/StartAttempt";
 import { TwoDice } from "./components/TwoDice";
 import { CycleHoliday } from "./components/CycleHoliday";
 import { Counter } from "./components/Counter";
-<<<<<<< HEAD
-
-// eslint-disable-next-line no-undef
-function App(): JSX.Element {
-=======
-import { DoubleHalf } from "./bad-components/DoubleHalf";
+// import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ColoredBox } from "./bad-components/ColoredBox";
 import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
 
 function App(): React.JSX.Element {
->>>>>>> origin/task-components
     return (
         <div className="App">
             <header className="App-header">
                 UD CISC275 with React Hooks and TypeScript
             </header>
             <hr></hr>
-<<<<<<< HEAD
-=======
             {/* <DoubleHalf></DoubleHalf> */}
             <hr></hr>
             <ChooseTeam></ChooseTeam>
@@ -34,7 +26,6 @@ function App(): React.JSX.Element {
             <hr></hr>
             <ShoveBox></ShoveBox>
             <hr></hr>
->>>>>>> origin/task-components
             <Counter></Counter>
             <hr />
             <RevealAnswer></RevealAnswer>
