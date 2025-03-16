@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //import { all } from "q";
+=======
+>>>>>>> origin/task-components
 import { Question, QuestionType } from "./interfaces/question";
 
 /**
@@ -11,6 +14,7 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
+<<<<<<< HEAD
     const q: Question = {
         id: id,
         name: name,
@@ -22,6 +26,9 @@ export function makeBlankQuestion(
         published: false
     };
     return q;
+=======
+    return {};
+>>>>>>> origin/task-components
 }
 
 /**
@@ -32,6 +39,7 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
+<<<<<<< HEAD
     let trimmedAnswer: string = answer.trim();
     let lowAnswer: string = trimmedAnswer.toLowerCase();
 
@@ -41,6 +49,8 @@ export function isCorrect(question: Question, answer: string): boolean {
     if (lowAnswer == expectedLow) {
         return true;
     }
+=======
+>>>>>>> origin/task-components
     return false;
 }
 
@@ -51,6 +61,7 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
+<<<<<<< HEAD
     let compare: boolean = true;
     if (question.type == "short_answer_question") {
         return true;
@@ -58,6 +69,9 @@ export function isValid(question: Question, answer: string): boolean {
         compare = question.options.some((q: string): boolean => q == answer);
     }
     return compare;
+=======
+    return false;
+>>>>>>> origin/task-components
 }
 
 /**
@@ -67,8 +81,12 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
+<<<<<<< HEAD
     let returnable: string = question.id + ": " + question.name.slice(0, 10);
     return returnable;
+=======
+    return "";
+>>>>>>> origin/task-components
 }
 
 /**
@@ -89,6 +107,7 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
+<<<<<<< HEAD
     let firstLine: string = "# " + question.name + "\n";
     let secondLine: string = question.body;
     let thirdLine: string = "";
@@ -103,6 +122,9 @@ export function toMarkdown(question: Question): string {
         }
     }
     return firstLine + secondLine + thirdLine;
+=======
+    return "";
+>>>>>>> origin/task-components
 }
 
 /**
@@ -110,8 +132,12 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
+<<<<<<< HEAD
     let newQuestion: Question = { ...question, name: newName };
     return newQuestion;
+=======
+    return question;
+>>>>>>> origin/task-components
 }
 
 /**
@@ -120,9 +146,13 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
+<<<<<<< HEAD
     let flipped: boolean = !question.published;
     let newQ: Question = { ...question, published: flipped };
     return newQ;
+=======
+    return question;
+>>>>>>> origin/task-components
 }
 
 /**
@@ -132,6 +162,7 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+<<<<<<< HEAD
     let newName: string = "Copy of " + oldQuestion.name;
     let newQ: Question = {
         ...oldQuestion,
@@ -141,6 +172,9 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
         options: [...oldQuestion.options]
     };
     return newQ;
+=======
+    return oldQuestion;
+>>>>>>> origin/task-components
 }
 
 /**
@@ -151,11 +185,15 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
+<<<<<<< HEAD
     let newQ: Question = {
         ...question,
         options: [...question.options, newOption]
     };
     return newQ;
+=======
+    return question;
+>>>>>>> origin/task-components
 }
 
 /**
@@ -172,6 +210,7 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
+<<<<<<< HEAD
     // body type and expected of CONTENT
     // points of SECOND Q
     // published is false
@@ -188,4 +227,7 @@ export function mergeQuestion(
     };
 
     return newQ;
+=======
+    return contentQuestion;
+>>>>>>> origin/task-components
 }
